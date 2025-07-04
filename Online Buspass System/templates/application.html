@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Bus Pass Application</title>
+  <style>
+    /* Global Styles */
+    body {
+      background-color: #001f3f; /* Dark blue */
+      color: #ffffff;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: #001f3f;
+      border-bottom: 2px solid #ff851b; /* Bright orange underline */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-list li {
+      margin-right: 20px;
+    }
+
+    .nav-list a {
+      text-decoration: none;
+      color: #ff851b;
+      font-weight: bold;
+      padding: 5px 10px;
+      transition: background-color 0.3s, color 0.3s;
+      border-radius: 4px;
+    }
+
+    .nav-list a:hover {
+      background-color: #ff851b;
+      color: #001f3f;
+    }
+
+    /* Main Content */
+    .content {
+      padding: 100px 20px 20px 20px; /* Ensure content doesn't overlap with fixed navbar */
+    }
+
+    /* Form Container */
+    .form-container {
+      background-color: #011a33;
+      border: 2px solid #ff851b;
+      border-radius: 8px;
+      padding: 30px;
+      max-width: 500px;
+      margin: 0 auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .form-header h1 {
+      color: #ff851b;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* Flash Messages */
+    .flashes {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .flashes li {
+      background-color: #ff851b;
+      color: #001f3f;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+    }
+
+    /* Form Buttons */
+    .form-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-buttons button {
+      background-color: #ff851b;
+      color: #001f3f;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .form-buttons button:hover {
+      background-color: #e67e22;
+    }
+
+    /* Form Content */
+    .form-content form {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .form-content form.active {
+      display: block;
+    }
+
+    .form-content label {
+      display: block;
+      margin-top: 15px;
+      color: #ff851b;
+    }
+
+    .form-content input[type="text"],
+    .form-content input[type="date"],
+    .form-content input[type="number"],
+    .form-content input[type="tel"],
+    .form-content input[type="email"],
+    .form-content select,
+    .form-content textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ff851b;
+      border-radius: 4px;
+      background-color: #001f3f;
+      color: #ffffff;
+    }
+
+    .form-content button[type="submit"] {
+      background-color: #ff851b;
+      color: #001f3f;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .form-content button[type="submit"]:hover {
+      background-color: #e67e22;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <ul class="nav-list">
+      <li><a href="/dashboard#contact" id="help">Help</a></li>
+    </ul>
+    <ul class="nav-list">
+      <li><a href="/dashboard#introduction" id="home">Home</a></li>
+      <li><a href="/dashboard#work" id="features">Features</a></li>
+    </ul>
+  </nav>
+  <div class="content">
+    <div class="form-container">
+      <div class="form-header">
+        <h1>Renew Pass or Apply for a New Pass</h1>
+      </div>
+      <!-- Flash messages block -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="flashes">
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      <div class="form-buttons">
+        <button id="renew-form">Renew Pass</button>
+        <button id="new-application-form">New Application</button>
+      </div>
+      <div class="form-content">
+        <!-- Renew Pass Form -->
+        <form id="renewal-details" action="/payment" method="POST">
+          <label for="pass_id">Pass ID:</label>
+          <input type="text" id="pass_id" name="pass_id" required>
+          <button type="submit">Submit Renewal</button>
+        </form>
+        <!-- New Application Form -->
+        <form id="new-application" action="/new-application" method="POST">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" required>
+          <label for="dob">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" required>
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="mobile">Mobile Number:</label>
+          <input type="tel" id="mobile" name="mobile" required>
+          <label for="email">Email (optional):</label>
+          <input type="email" id="email" name="email">
+          <label for="adhar">Adhaar Card Number:</label>
+          <input type="text" id="adhar" name="adhar" required>
+          <label for="residence">Resident Address:</label>
+          <textarea id="residence" name="residence" required></textarea>
+          <label for="permanent">Permanent Address:</label>
+          <textarea id="permanent" name="permanent" required></textarea>
+          <label for="pass-type">Select Pass Type:</label>
+          <select id="pass-type" name="pass-type" required>
+            <option value="student">Student Pass</option>
+            <option value="1000">1000 Pass</option>
+          </select>
+          <!-- <label for="passenger-sign">Upload Passenger Sign Image:</label>
+          <input type="file" id="passenger-sign" name="passenger-sign" accept="image/*"> -->
+          <button type="submit">Submit Application</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("renew-form").addEventListener("click", function() {
+      showForm("renewal-details");
+    });
+
+    document.getElementById("new-application-form").addEventListener("click", function() {
+      showForm("new-application");
+    });
+
+    function showForm(formId) {
+      var forms = document.querySelectorAll(".form-content form");
+      forms.forEach(function(form) {
+        form.classList.remove("active");
+      });
+      document.getElementById(formId).classList.add("active");
+    }
+
+    // Navbar scroll animation
+    var navbar = document.getElementById("navbar");
+    var prevScrollPos = window.pageYOffset;
+    var hideOffset = 50;
+    window.addEventListener("scroll", function() {
+      var currentScrollPos = window.pageYOffset;
+      if (currentScrollPos > prevScrollPos + hideOffset) {
+        navbar.style.transform = "translateY(-100%)";
+      } else if (currentScrollPos < prevScrollPos - hideOffset || currentScrollPos <= 0) {
+        navbar.style.transform = "translateY(0)";
+      }
+      prevScrollPos = currentScrollPos;
+    });
+
+    window.onload = function() {
+      var target = "{{ target_section }}";
+      var element = document.getElementById(target);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+  </script>
+</body>
+</html>

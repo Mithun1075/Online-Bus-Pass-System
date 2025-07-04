@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>UPI Payment Process</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .payment-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            color: #f8f8f8;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .amount-options button {
+            background-color: #ff6600;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .amount-options button:hover {
+            background-color: #ff4500;
+        }
+
+        .submit-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="payment-container">
+        <h2>UPI Payment Information</h2>
+        <form method="POST" action="/payment">
+            <label for="upi_id">Recipient UPI ID:</label>
+            <input type="text" id="upi_id" name="upi_id" required>
+            
+            <label>Amount to Pay:</label>
+            <div class="amount-options">
+                <button type="button" onclick="setAmount(1000)">₹1000</button>
+                <button type="button" onclick="setAmount(300)">₹300</button>
+            </div>
+            <input type="text" id="amount" name="amount" required>
+            
+            <input type="hidden" name="pass_id" value="{{ pass_id }}"> 
+            <button type="submit" class="submit-btn">Make Payment</button>
+        </form>
+    </div>
+
+    <script>
+        function setAmount(value) {
+            document.getElementById('amount').value = value;
+        }
+    </script>
+</body>
+</html>
