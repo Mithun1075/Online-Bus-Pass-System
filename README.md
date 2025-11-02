@@ -75,5 +75,5 @@ Then open your browser and visit:
 🧑‍💻 Author
 
 Mithun R
-🎓 BCA Graduate | 💻 Aspiring Full Stack Developer
-📫 LinkedIn : https://www.linkedin.com/in/mithun1075/ | Email : mithungugan007@gmail.com 
+- 🎓 BCA Graduate | 💻 Aspiring Full Stack Developer
+- 📫 LinkedIn : https://www.linkedin.com/in/mithun1075/ | Email : mithungugan007@gmail.com 
