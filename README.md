@@ -32,9 +32,6 @@ It simplifies the traditional manual process by providing an easy-to-use digital
 
 ---
 
-
----
-
 ## 🧩 Installation & Setup
 
 ### Prerequisites
