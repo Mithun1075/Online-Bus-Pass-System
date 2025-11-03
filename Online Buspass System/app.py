@@ -257,7 +257,7 @@ def e_pass_form():
     if pass_details:
         return render_template('e_pass.html', pass_details=pass_details)
     else:
-        return "E-Bus Pass not found."
+        return "E-Bus Pass not found!."
 
 @app.route('/payment/<pass_id>', methods=['GET'])
 def payment(pass_id):
@@ -400,3 +400,4 @@ if __name__ == '__main__':
     init_applicant_db()
     init_payment_db()
     app.run(debug=True)
+
