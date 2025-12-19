@@ -401,3 +401,4 @@ if __name__ == '__main__':
     init_payment_db()
     app.run(debug=True)
 
+
