@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Dashboard | Bus Pass System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/dashboard.css') }}"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h2>Bus Pass System</h2>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#contact">Contact</a>
+        <a href="{{ url_for('application') }}">New Pass</a>
+        <a href="{{ url_for('renewal') }}">Renew Pass</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="hero-box">
+        <h1>Online Bus Pass Application</h1>
+        <p>Apply, renew, or view your bus pass online.</p>
+
+        <a href="{{ url_for('application') }}" class="btn">Apply New Pass</a>
+        <a href="{{ url_for('renewal') }}" class="btn">Renew Pass</a>
+
+        <div class="view-card">
+          <h3>View Your E-Bus Pass</h3>
+          <p>Enter your Pass ID to view your E-Pass</p>
+
+          <form method="POST" action="{{ url_for('view_epass') }}">
+            <input
+              type="text"
+              name="pass_id"
+              placeholder="Enter Pass ID (EBP-12345)"
+              required
+            />
+            <button type="submit">View E-Pass</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <section id="features">
+      <div class="container">
+        <h2 class="title">Why Choose Our Service?</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>Easy Application</h3>
+            <p>Quick and simple online application.</p>
+          </div>
+          <div class="feature">
+            <h3>Pass Renewal</h3>
+            <p>Renew your existing pass using Pass ID.</p>
+          </div>
+          <div class="feature">
+            <h3>Digital E-Pass</h3>
+            <p>Download and use anytime.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="title">Contact Us</h2>
+        <p>Email: support@buspassapp.com</p>
+        <p>Phone: +91 98765 43210</p>
+        <p>Chennai, Tamil Nadu</p>
+      </div>
+    </section>
+
+    <footer>© Online Bus Pass System | Government of Tamil Nadu</footer>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>UPI Payment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/payment.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="payment-box">
+      <h2>UPI Payment</h2>
+
+      <form method="POST" action="{{ url_for('payment', pass_id=pass_id) }}">
+        <label>Recipient UPI ID</label>
+        <input type="text" name="upi_id" placeholder="example@upi" required />
+
+        <label>Amount (Auto Selected)</label>
+        <input type="text" name="amount" value="₹{{ amount }}" readonly />
+
+        <input type="hidden" name="pass_id" value="{{ pass_id }}" />
+
+        <button type="submit" class="pay-btn">Make Payment</button>
+      </form>
+    </div>
+  </body>
+</html>

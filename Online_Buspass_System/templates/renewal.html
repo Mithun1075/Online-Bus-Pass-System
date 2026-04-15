@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Renew Bus Pass</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/renewal.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="card">
+      <h2>Renew Bus Pass</h2>
+      <p>Enter your existing Pass ID to continue renewal.</p>
+
+      <form
+        method="POST"
+        action="{{ url_for('renewal') }}"
+        onsubmit="this.querySelector('button').disabled = true"
+      >
+        <input type="text" name="pass_id" placeholder="EBP-12345" required />
+        <small>Format: EBP-xxxxx</small>
+
+        <button type="submit">Proceed to Payment</button>
+      </form>
+
+      <a href="{{ url_for('dashboard') }}" class="back-link">
+        ← Back to Dashboard
+      </a>
+    </div>
+  </body>
+</html>

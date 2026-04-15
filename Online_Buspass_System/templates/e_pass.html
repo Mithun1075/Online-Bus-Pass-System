@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>E-Bus Pass | Government of Tamil Nadu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/e_pass.css') }}"
+    />
+  </head>
+
+  <body>
+    <h1>Government of Tamil Nadu</h1>
+
+    <button id="showPassBtn">Show E-Bus Pass</button>
+
+    <div class="pass-card" id="passCard">
+      <h2>E-Bus Pass</h2>
+
+      <div class="pass-info">
+        <p><strong>Pass ID:</strong> {{ pass_details.pass_id }}</p>
+        <p><strong>Name:</strong> {{ pass_details.name }}</p>
+        <p><strong>Gender:</strong> {{ pass_details.gender }}</p>
+        <p><strong>Location:</strong> {{ pass_details.location }}</p>
+        <p><strong>Pass Type:</strong> {{ pass_details.pass_type }}</p>
+        <p><strong>Expiry Date:</strong> {{ pass_details.expiry_date }}</p>
+      </div>
+
+      <div class="signatures">
+        <div>
+          <p><strong>Govt. Seal</strong></p>
+          <img src="{{ url_for('static', filename='images/logo.png') }}" />
+        </div>
+        <div>
+          <p><strong>Officer Sign</strong></p>
+          <img
+            src="{{ url_for('static', filename='images/officer_sign.png') }}"
+          />
+        </div>
+      </div>
+    </div>
+
+    <a href="{{ url_for('dashboard') }}" id="homeBtn">Back to Home</a>
+
+    <script>
+      const showBtn = document.getElementById("showPassBtn");
+      const passCard = document.getElementById("passCard");
+      const homeBtn = document.getElementById("homeBtn");
+
+      showBtn.onclick = () => {
+        passCard.style.display = "block";
+        homeBtn.style.display = "inline-block";
+        showBtn.style.display = "none";
+      };
+    </script>
+  </body>
+</html>

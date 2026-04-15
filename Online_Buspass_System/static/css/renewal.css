@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f2f6fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #003366;
+}
+
+.card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 35px 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+  color: #003366;
+}
+
+p {
+  margin-bottom: 20px;
+  color: #555;
+  font-size: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+small {
+  display: block;
+  margin-bottom: 15px;
+  color: #777;
+  font-size: 13px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: #003366;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #00509e;
+}
+
+button:disabled {
+  background: #999;
+  cursor: not-allowed;
+}
+
+.back-link {
+  display: block;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #003366;
+  text-decoration: underline;
+}
+
+/* Flash messages */
+.flash {
+  background: #ffdddd;
+  color: #900;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 25px 20px;
+  }
+}

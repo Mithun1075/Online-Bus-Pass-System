@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Application Submitted</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/submission.css') }}"
+    />
+  </head>
+
+  <body>
+    <div class="card">
+      <h1>Application Submitted Successfully</h1>
+      <p>Your bus pass application has been submitted.</p>
+
+      <a href="{{ url_for('payment', pass_id=pass_id) }}" class="btn">
+        Proceed to Payment
+      </a>
+    </div>
+  </body>
+</html>

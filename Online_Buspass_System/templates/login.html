@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bus Pass Application</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/login.css') }}"
+    />
+  </head>
+
+  <body>
+    <h1>Bus Pass Application</h1>
+
+    <div class="container">
+      <section id="login" class="active">
+        <h2>User Login</h2>
+        <form method="POST" action="{{ url_for('login') }}">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="login-email" required />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="login-password" required />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+        <div class="links">
+          <a onclick="show('register')">I don't have an account</a>
+        </div>
+      </section>
+
+
+      <section id="register">
+        <h2>User Register</h2>
+        <form method="POST" action="{{ url_for('register') }}">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="register-email" required />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" name="register-password" required />
+          </div>
+          <button type="submit">Register</button>
+        </form>
+        <div class="links">
+          <a onclick="show('login')">Already have an account</a>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      function show(id) {
+        document.querySelectorAll("section").forEach((section) => {
+          section.classList.remove("active");
+        });
+        document.getElementById(id).classList.add("active");
+        clearInputs();
+      }
+
+      function clearInputs() {
+        document.querySelectorAll("input").forEach((input) => {
+          input.value = "";
+        });
+      }
+    </script>
+  </body>
+</html>
