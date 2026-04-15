@@ -10,7 +10,6 @@ It simplifies the traditional manual process by providing an easy-to-use digital
 - 🪪 **Apply for a new bus pass**
 - 🔁 **Renew existing passes**
 - 📄 **View pass status and details**
-- 🧾 **Admin dashboard** to manage user records and approve requests
 - 🗃️ **Database integration** for storing all pass details securely
 
 ---
